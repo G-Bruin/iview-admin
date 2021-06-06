@@ -53,17 +53,24 @@ export default [
   {
     path: '/officeBuild',
     name: '写字楼',
-    component: Main,
     meta: {
-      title: '写字楼发布',
-      hideInMenu: false,
-      notCache: true,
-      icon: 'ios-book'
+      icon: 'ios-book',
+      title: '写字楼发布'
     },
+    component: Main,
     children: [
       {
+        path: 'index',
+        name: '列表',
+        meta: {
+          icon: 'ios-book',
+          title: '写字楼发布'
+        },
+        component: () => import('@/components/officeBuild/officeBuild')
+      },
+      {
         path: 'post',
-        name: '写字楼发布',
+        name: '发布',
         meta: {
           icon: 'ios-book',
           title: '写字楼发布'
