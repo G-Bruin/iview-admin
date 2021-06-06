@@ -51,43 +51,12 @@ export default [
     ]
   },
   {
-    path: '/officeBuild',
-    name: '写字楼',
-    component: Main,
+    path: '',
+    name: 'doc',
     meta: {
-      title: '写字楼发布',
-      hideInMenu: false,
-      notCache: true,
+      title: '文档',
+      href: 'https://lison16.github.io/iview-admin-doc/#/',
       icon: 'ios-book'
-    },
-    children: [
-      {
-        path: 'post',
-        name: '写字楼发布',
-        meta: {
-          icon: 'ios-book',
-          title: '写字楼发布'
-        },
-        component: () => import('@/components/officeBuild/officeBuild')
-      }
-    ]
-  },
-  {
-    path: '/join',
-    name: '新闻发布',
-    meta: {
-      title: '新闻发布',
-      href: 'https://www.jianshu.com/p/5be22ab2ece4',
-      icon: 'md-bookmarks'
-    }
-  },
-  {
-    path: '/join',
-    name: '基础配置',
-    meta: {
-      title: '基础配置',
-      href: 'https://www.jianshu.com/p/5be22ab2ece4',
-      icon: 'ios-settings'
     }
   },
   {
