@@ -11,6 +11,7 @@
     "test:e2e": "vue-cli-service test:e2e"
   },
   "dependencies": {
+    "@tinymce/tinymce-vue": "^4.0.3",
     "axios": "^0.18.0",
     "clipboard": "^2.0.0",
     "codemirror": "^5.38.0",
@@ -24,6 +25,7 @@
     "js-cookie": "^2.2.0",
     "simplemde": "^1.11.2",
     "sortablejs": "^1.7.0",
+    "tinymce": "^5.8.1",
     "tree-table-vue": "^1.1.0",
     "v-org-tree": "^1.0.6",
     "vue": "^2.5.10",
@@ -32,7 +34,8 @@
     "vuedraggable": "^2.16.0",
     "vuex": "^3.0.1",
     "wangeditor": "^3.1.1",
-    "xlsx": "^0.13.3"
+    "xlsx": "^0.13.3",
+    "yarn": "^1.22.10"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.0.1",

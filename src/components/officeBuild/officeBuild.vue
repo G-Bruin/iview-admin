@@ -30,12 +30,12 @@
       <Input v-model="formValidate.property" placeholder="请输入物业公司"></Input>
     </FormItem>
 
-    <FormItem label="物业管理费" prop="parking_free">
-      <Input v-model="formValidate.property" placeholder="请输入物业管理费，单位（元/㎡/月）"></Input>
+    <FormItem label="物业管理费，单位(元/㎡/月)" prop="parking_free">
+      <Input v-model="formValidate.property" placeholder="请输入物业管理费"></Input>
     </FormItem>
 
-    <FormItem label="日租金均价" prop="day_rent">
-      <Input v-model="formValidate.day_rent" placeholder="请输入日租金均价，单位（元/㎡·天 ）"></Input>
+    <FormItem label="日租金均价，单位(元/㎡·天)" prop="day_rent">
+      <Input v-model="formValidate.day_rent" placeholder="请输入日租金均价"></Input>
     </FormItem>
 
     <FormItem label="竣工年月" prop="complete_day">
