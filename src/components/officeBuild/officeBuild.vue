@@ -19,7 +19,7 @@
     </FormItem>
 
     <FormItem label="楼层" prop="floor">
-      <Input v-model="formValidate.address" placeholder="请输入写字楼楼层"></Input>
+      <Input v-model="formValidate.floor" placeholder="请输入写字楼楼层"></Input>
     </FormItem>
 
     <FormItem label="电梯" prop="elevator">
@@ -30,8 +30,8 @@
       <Input v-model="formValidate.property" placeholder="请输入物业公司"></Input>
     </FormItem>
 
-    <FormItem label="物业管理费，单位(元/㎡/月)" prop="parking_free">
-      <Input v-model="formValidate.property" placeholder="请输入物业管理费"></Input>
+    <FormItem label="物业管理费，单位(元/㎡/月)" prop="property_free">
+      <Input v-model="formValidate.property_free" placeholder="请输入物业管理费"></Input>
     </FormItem>
 
     <FormItem label="日租金均价，单位(元/㎡·天)" prop="day_rent">
@@ -79,28 +79,16 @@
     </FormItem>
 
     <FormItem label="项目介绍" prop="introduce">
-      <Input v-model="formValidate.introduce" placeholder="请输入项目介绍"></Input>
+      <tinymce-editor ref="editor"  v-model="formValidate.introduce" :cache="false"></tinymce-editor>
     </FormItem>
 
     <FormItem label="周边酒店、餐饮、银行介绍" prop="hotel_etc">
-      <Input v-model="formValidate.hotel_etc" placeholder="周边酒店、餐饮、银行介绍"></Input>
+      <tinymce-editor ref="editor2"  v-model="formValidate.hotel_etc" :cache="false" ></tinymce-editor>
     </FormItem>
-
-<!--    <FormItem label="周边餐饮" prop="dining">-->
-<!--      <Input v-model="formValidate.dining" placeholder="请输入周边餐饮"></Input>-->
-<!--    </FormItem>-->
-
-<!--    <FormItem label="周边银行" prop="bank">-->
-<!--      <Input v-model="formValidate.bank" placeholder="请输入周边银行"></Input>-->
-<!--    </FormItem>-->
 
     <FormItem label="周边交通介绍" prop="traffic">
-      <Input v-model="formValidate.traffic" placeholder="请输入周边交通介绍"></Input>
+      <tinymce-editor ref="editor3" v-model="formValidate.traffic" :cache="false"></tinymce-editor>
     </FormItem>
-
-<!--    <FormItem label="周边公交车站" prop="bus">-->
-<!--      <Input v-model="formValidate.bus" placeholder="请输入周边公交车站"></Input>-->
-<!--    </FormItem>-->
 
     <FormItem label="周边入驻企业" prop="company">
       <Input v-model="formValidate.company" placeholder="请输入周边入驻企业"></Input>
@@ -113,6 +101,7 @@
   </Form>
 </template>
 <script>
+import TinymceText from '../editor/editor'
 export default {
   data () {
     return {
@@ -130,7 +119,6 @@ export default {
         introduce: '',
         hotel_etc: '',
         traffic: '',
-        // interest: [],
         date: '',
         time: '',
         desc: ''
@@ -152,10 +140,6 @@ export default {
         floor: [
           { required: true, message: '请输入写字楼楼层', trigger: 'blur' }
         ],
-        // interest: [
-        //   { required: true, type: 'array', min: 1, message: 'Choose at least one hobby', trigger: 'change' },
-        //   { type: 'array', max: 2, message: 'Choose two hobbies at best', trigger: 'change' }
-        // ],
         property: [
           { required: true, message: '请输入物业公司', trigger: 'blur' }
         ],
@@ -185,6 +169,7 @@ export default {
   },
   methods: {
     handleSubmit (name) {
+      console.log(this.formValidate)
       this.$refs[name].validate((valid) => {
         if (valid) {
           this.$Message.success('Success!')
@@ -196,6 +181,9 @@ export default {
     handleReset (name) {
       this.$refs[name].resetFields()
     }
+  },
+  components: {
+    'tinymce-editor': TinymceText
   }
 }
 </script>
