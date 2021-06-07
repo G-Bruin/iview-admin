@@ -2,9 +2,9 @@
   <div>
   <div class="demo-upload-list" v-for="item in uploadList" :key="item">
 <!--    <template v-if="item.status === 'finished'">-->
-      <img :src="item.url">
+      <img :src="item">
       <div class="demo-upload-list-cover">
-        <Icon type="ios-eye-outline" @click.native="handleView(item.name)"></Icon>
+<!--        <Icon type="ios-eye-outline" @click.native="handleView(item.name)"></Icon>-->
         <Icon type="ios-trash-outline" @click.native="handleRemove(item)"></Icon>
       </div>
 <!--    </template>-->
@@ -24,7 +24,7 @@
     :before-upload="handleBeforeUpload"
     multiple
     type="drag"
-    action="//jsonplaceholder.typicode.com/posts/"
+    action="http://127.0.0.1:8701/admin/office/building"
     style="display: inline-block;width:58px;">
     <div style="width: 58px;height:58px;line-height: 58px;">
       <Icon type="ios-camera" size="20"></Icon>
@@ -65,38 +65,37 @@ export default {
       this.visible = true
     },
     handleRemove (file) {
-      const fileList = this.$refs.upload.fileList
-      this.$refs.upload.fileList.splice(fileList.indexOf(file), 1)
+      this.uploadList.splice(this.uploadList.indexOf(file), 1)
     },
     handleSuccess (res, file) {
-      file.url = 'https://o5wwk8baw.qnssl.com/7eb99afb9d5f317c912f08b5212fd69a/avatar'
-      file.name = '7eb99afb9d5f317c912f08b5212fd69a'
+      file.url = 'https://ss.lanqb.com/084b0003-c9cc-4997-8336-d3cfbbd7784e.jpg?imageView2/2/w/820/h/0'
+      this.uploadList.push(file.url)
     },
     handleFormatError (file) {
       this.$Notice.warning({
-        title: 'The file format is incorrect',
+        title: '格式不正确',
         desc: 'File format of ' + file.name + ' is incorrect, please select jpg or png.'
       })
     },
     handleMaxSize (file) {
       this.$Notice.warning({
-        title: 'Exceeding file size limit',
+        title: '最大限制10M',
         desc: 'File  ' + file.name + ' is too large, no more than 2M.'
       })
     },
     handleBeforeUpload () {
-      const check = this.uploadList.length < 5
+      const check = this.uploadList.length < 6
       if (!check) {
         this.$Notice.warning({
-          title: 'Up to five pictures can be uploaded.'
+          title: '不能超过6个'
         })
       }
       return check
     }
-  },
-  mounted () {
-    this.uploadList = this.$refs.upload.fileList
   }
+  // mounted () {
+  //   this.uploadList = this.$refs.upload.fileList
+  // }
 }
 </script>
 <style>
