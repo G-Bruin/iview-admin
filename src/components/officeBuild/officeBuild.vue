@@ -5,7 +5,14 @@
       <Input v-model="formValidate.title" placeholder="请输入写字楼名称"  ></Input>
     </FormItem>
 
-    <!-- todo 上传 picture position_picture -->
+      <FormItem label="项目图片，限6张图片" prop="picture">
+        <cbUpload ref="editor5" v-model="formValidate.picture" ></cbUpload>
+      </FormItem>
+
+      <FormItem label="位置图片，限6张图片" prop="position_picture">
+        <cbUpload ref="editor5" v-model="formValidate.position_picture" ></cbUpload>
+      </FormItem>
+
     <FormItem label="销售手机号" prop="phone">
       <Input v-model="formValidate.phone" placeholder="请输入手机号"></Input>
     </FormItem>
@@ -102,12 +109,15 @@
 </template>
 <script>
 import TinymceText from '../editor/editor'
+import cbUpload from './upload'
 export default {
   data () {
     return {
+      defaultImg: [],
       formValidate: {
         title: '',
         type: '',
+        picture: [],
         address: '',
         floor: '',
         phone: '',
@@ -118,21 +128,20 @@ export default {
         parking_free: '',
         introduce: '',
         hotel_etc: '',
-        traffic: '',
-        date: '',
-        time: '',
-        desc: ''
+        traffic: ''
       },
       ruleValidate: {
         title: [
           { required: true, message: '请输入写字楼名称', trigger: 'blur' }
+        ],
+        picture: [
+          { required: true, message: '请上传项目图片', trigger: 'blur' }
         ],
         phone: [
           { required: true, message: '请输入手机号', trigger: 'blur' }
         ],
         type: [
           { required: true, message: '请输入写字楼类型', trigger: 'blur' }
-          // { type: 'email', message: 'Incorrect email format', trigger: 'blur' }
         ],
         address: [
           { required: true, message: '请输入写字楼地址', trigger: 'blur' }
@@ -183,7 +192,8 @@ export default {
     }
   },
   components: {
-    'tinymce-editor': TinymceText
+    'tinymce-editor': TinymceText,
+    'cbUpload': cbUpload
   }
 }
 </script>
