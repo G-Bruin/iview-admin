@@ -94,7 +94,9 @@ export default [
     name: '后台用户管理',
     meta: {
       icon: 'ios-book',
-      title: '后台用户管理'
+      title: '后台用户管理',
+      hideInMenu: true
+
     },
     component: Main,
     children: [

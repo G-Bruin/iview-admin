@@ -19,10 +19,12 @@
           <strong>{{ row.name }}</strong>
         </template>
         <template slot-scope="{ row, index }" slot="action">
-          <Button type="primary" size="small" style="margin-right: 5px" @click="add()">添加</Button>
+<!--          <Button type="primary" size="small" style="margin-right: 5px" @click="add()">添加</Button>-->
           <Button type="error" size="small" @click="remove(index)">删除</Button>
         </template>
       </Table>
+      <Button type="primary" size="small" style="margin-top: 10px" @click="add()">添加面积信息</Button>
+
     </FormItem>
 
     <FormItem label="销售手机号" prop="phone">
@@ -122,7 +124,7 @@
         <FormItem label="日租金">
           <Input v-model="table_day_rent"></Input>
         </FormItem>
-        <FormItem label="备注">
+        <FormItem label="月租金">
           <Input v-model="table_remark"></Input>
         </FormItem>
       </Form>
@@ -169,7 +171,7 @@ export default {
           key: 'day_rent'
         },
         {
-          title: '备注',
+          title: '月租金',
           key: 'remark'
         },
         {

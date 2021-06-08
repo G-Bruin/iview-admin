@@ -16,7 +16,7 @@
         <strong>{{ row.name }}</strong>
       </template>
       <template slot-scope="{ row, index }" slot="action">
-        <Button type="primary" size="small" style="margin-right: 5px" @click="show(index)">预览</Button>
+        <Button type="primary" size="small" style="margin-right: 5px" @click="show(row)">预览</Button>
         <Button type="primary" size="small" style="margin-right: 5px" @click="push(row)">修改</Button>
 <!--        <Button type="error" size="small" @click="remove(index)">下架</Button>-->
       </template>
@@ -102,6 +102,7 @@ export default {
         // }
       ],
       per_page: 10,
+      host: '',
       total: 0,
       page: 1,
       title: ''
@@ -126,6 +127,10 @@ export default {
       this.$router.push({ name: 'officeBuild-edit', query: { id: row.id } })
     },
 
+    show (row) {
+      window.open(this.host + '/office/building/' + row.id, '_blank', '')
+    },
+
     getList (page) {
       let _this = this
       axios.request({
@@ -135,6 +140,7 @@ export default {
       })
         .then(function (response) {
           let data = response.data.data
+          _this.host = response.data.message
           _this.total = data.total
           _this.data = data.data
         })
