@@ -40,7 +40,7 @@ module.exports = {
   devServer: {
     proxy: {
       '/jd': {
-        target: 'http://116.62.62.211', // 这里是目标服务器地址
+        target: 'http://www.jingbanwang.cn', // 这里是目标服务器地址
         changeOrigin: true, // 是否改变源地址
         ws: true, // 是否支持websocket协议
         pathRewrite: { // 路径重写
