@@ -2,11 +2,12 @@ import axios from '@/libs/api.request'
 
 export const login = ({ userName, password }) => {
   const data = {
-    userName,
+    username: userName,
     password
   }
+
   return axios.request({
-    url: 'login',
+    url: '/jd/admin/auth/login',
     data,
     method: 'post'
   })
@@ -14,11 +15,11 @@ export const login = ({ userName, password }) => {
 
 export const getUserInfo = (token) => {
   return axios.request({
-    url: 'get_info',
+    url: '/jd/admin/auth/me',
     params: {
       token
     },
-    method: 'get'
+    method: 'post'
   })
 }
 
@@ -29,19 +30,19 @@ export const logout = (token) => {
   })
 }
 
-export const getUnreadCount = () => {
-  return axios.request({
-    url: 'message/count',
-    method: 'get'
-  })
-}
-
-export const getMessage = () => {
-  return axios.request({
-    url: 'message/init',
-    method: 'get'
-  })
-}
+// export const getUnreadCount = () => {
+//   return axios.request({
+//     url: 'message/count',
+//     method: 'get'
+//   })
+// }
+//
+// export const getMessage = () => {
+//   return axios.request({
+//     url: 'message/init',
+//     method: 'get'
+//   })
+// }
 
 export const getContentByMsgId = msg_id => {
   return axios.request({

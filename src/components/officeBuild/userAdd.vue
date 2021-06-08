@@ -15,50 +15,53 @@
 
 </template>
 <script>
-  // import axios from '@/libs/api.request'
+import axios from '@/libs/api.request'
+// import HttpRequest from '@/libs/axios'
 
-  export default {
-    data () {
-      return {
-        tableData: [],
-        formValidate: {
-          username: '',
-          password: ''
-        },
-        ruleValidate: {
-          username: [
-            { required: true, message: '请输入账号', trigger: 'blur' }
-          ],
-          password: [
-            { required: true, message: '请输入密码', trigger: 'blur' }
-          ]
-        }
-      }
-    },
-    methods: {
-      handleSubmit (name) {
-        // let _this = this
-        // let formValidate = _this.formValidate
-
-        // axios.get('/user?ID=12345')
-        //   .then(function (response) {
-        //     console.log(response)
-        //   })
-        //   .catch(function (error) {
-        //     console.log(error)
-        //   })
-
-        this.$refs[name].validate((valid) => {
-          if (valid) {
-            this.$Message.success('Success!')
-          } else {
-            this.$Message.error('Fail!')
-          }
-        })
+export default {
+  data () {
+    return {
+      tableData: [],
+      formValidate: {
+        username: '',
+        password: ''
       },
-      handleReset (name) {
-        this.$refs[name].resetFields()
+      ruleValidate: {
+        username: [
+          { required: true, message: '请输入账号', trigger: 'blur' }
+        ],
+        password: [
+          { required: true, message: '请输入密码', trigger: 'blur' }
+        ]
       }
     }
+  },
+  methods: {
+    handleSubmit (name) {
+      // let _this = this
+      // let formValidate = _this.formValidate
+      axios.request({
+        url: '/api/admin/auth/login',
+        method: 'post'
+      })
+        .then(function (response) {
+          console.log(response)
+        })
+        .catch(function (error) {
+          console.log(error)
+        })
+
+        // this.$refs[name].validate((valid) => {
+        //   if (valid) {
+        //     this.$Message.success('Success!')
+        //   } else {
+        //     this.$Message.error('Fail!')
+        //   }
+        // })
+    },
+    handleReset (name) {
+      this.$refs[name].resetFields()
+    }
   }
+}
 </script>

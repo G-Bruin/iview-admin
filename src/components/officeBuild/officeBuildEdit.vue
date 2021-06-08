@@ -1,20 +1,20 @@
 <template>
   <Form ref="formValidate" :model="formValidate" :rules="ruleValidate" :label-width="190">
 
-    <FormItem label="写字楼名称" prop="title">
+    <FormItem label="写字楼名称11" prop="title">
       <Input v-model="formValidate.title" placeholder="请输入写字楼名称"  ></Input>
     </FormItem>
 
     <FormItem label="项目图片，限6张图片" prop="picture">
-      <cbUpload ref="editor5" v-model="formValidate.picture" ></cbUpload>
+      <cbUpload ref="editor5" v-model="formValidate.picture" v-if="formValidate.picture.length"></cbUpload>
     </FormItem>
 
     <FormItem label="位置图片，限6张图片" prop="position_picture">
-      <cbUpload ref="editor5" v-model="formValidate.position_picture" ></cbUpload>
+<!--      <cbUpload ref="editor5" v-model="formValidate.position_picture" ></cbUpload>-->
     </FormItem>
 
     <FormItem label="出租房源面积信息" prop="rentable_area">
-      <Table border :columns="formValidate.columns" :data="formValidate.rentable_area">
+      <Table border :columns="columns" :data="formValidate.rentable_area">
         <template slot-scope="{ row }" slot="name">
           <strong>{{ row.name }}</strong>
         </template>
@@ -142,6 +142,7 @@ export default {
       modal12: false,
       modal13: false,
       formValidate: {
+        id: '',
         title: '',
         type: '',
         picture: [],
@@ -156,28 +157,28 @@ export default {
         introduce: '',
         hotel_etc: '',
         traffic: '',
-        columns: [
-          {
-            title: '面积',
-            key: 'area'
-          },
-          {
-            title: '日租金',
-            key: 'day_rent'
-          },
-          {
-            title: '备注',
-            key: 'remark'
-          },
-          {
-            title: '操作',
-            slot: 'action',
-            width: 150,
-            align: 'center'
-          }
-        ],
         rentable_area: []
       },
+      columns: [
+        {
+          title: '面积',
+          key: 'area'
+        },
+        {
+          title: '日租金',
+          key: 'day_rent'
+        },
+        {
+          title: '备注',
+          key: 'remark'
+        },
+        {
+          title: '操作',
+          slot: 'action',
+          width: 150,
+          align: 'center'
+        }
+      ],
       table_area: '',
       table_day_rent: '',
       table_remark: '',
@@ -185,7 +186,6 @@ export default {
         title: [
           { required: true, message: '请输入写字楼名称', trigger: 'blur' }
         ],
-
         picture: [
           { required: true, type: 'array', min: 1, message: '请上传项目图片', trigger: 'change' },
           { type: 'array', max: 6, message: '最多请上传项目图片', trigger: 'change' }
@@ -228,6 +228,9 @@ export default {
         ]
       }
     }
+  },
+  mounted () {
+    this.getDetail()
   },
   methods: {
     handleSubmit (name) {
@@ -277,6 +280,20 @@ export default {
       this.table_area = ''
       this.table_day_rent = ''
       this.table_remark = ''
+    },
+    getDetail () {
+      console.log(this.$route.query.id)
+      let id = this.$route.query.id
+      let _this = this
+      axios.request({
+        url: '/jd/admin/office/building/' + id,
+        method: 'get'
+      })
+        .then(function (response) {
+          let data = response.data
+          _this.formValidate = data.data
+        // _this.$set(_this.formValidate, 'picture', data.data.picture)
+        })
     }
   },
   components: {
