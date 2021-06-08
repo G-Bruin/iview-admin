@@ -8,7 +8,7 @@
     </div>
     <Upload
       ref="upload"
-      :show-upload-list="false"
+      :show-upload-list="true"
       :default-file-list="value"
       :on-success="handleSuccess"
       :format="['jpg','jpeg','png']"
@@ -76,7 +76,7 @@ export default {
     }
   },
   mounted () {
-    this.uploadList = this.$refs.upload.fileList
+    // this.uploadList = this.$refs.upload.fileList
   }
 }
 </script>

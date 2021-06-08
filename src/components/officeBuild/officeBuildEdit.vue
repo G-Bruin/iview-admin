@@ -6,11 +6,11 @@
     </FormItem>
 
     <FormItem label="项目图片，限6张图片" prop="picture">
-      <cbUpload ref="editor5" v-model="formValidate.picture" v-if="formValidate.picture.length"></cbUpload>
+      <cbUpload ref="editor5" v-model="formValidate.picture" ></cbUpload>
     </FormItem>
 
     <FormItem label="位置图片，限6张图片" prop="position_picture">
-<!--      <cbUpload ref="editor5" v-model="formValidate.position_picture" ></cbUpload>-->
+      <cbUpload ref="editor5" v-model="formValidate.position_picture" ></cbUpload>
     </FormItem>
 
     <FormItem label="出租房源面积信息" prop="rentable_area">
@@ -237,10 +237,11 @@ export default {
       let _this = this
       this.$refs[name].validate((valid) => {
         if (valid) {
+          let id = this.$route.query.id
           let formValidate = this.formValidate
           axios.request({
-            url: '/jd/admin/office/building',
-            method: 'post',
+            url: '/jd/admin/office/building/' + id,
+            method: 'put',
             data: formValidate
           })
             .then(function (response) {
