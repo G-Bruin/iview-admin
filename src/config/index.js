@@ -18,7 +18,7 @@ export default {
    */
   baseUrl: {
     dev: '',
-    pro: 'http://www.jingbanwang.cn'
+    pro: 'http://116.62.62.211:81'
   },
   /**
    * @description 默认打开的首页的路由name值，默认为home
