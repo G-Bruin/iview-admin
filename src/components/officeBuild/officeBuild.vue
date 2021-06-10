@@ -5,12 +5,16 @@
       <Input v-model="formValidate.title" placeholder="请输入写字楼名称"  ></Input>
     </FormItem>
 
-    <FormItem label="项目图片，限6张图片" prop="picture">
-      <cbUpload ref="editor5" v-model="formValidate.picture" ></cbUpload>
+    <FormItem label="写字楼经度" prop="longitude">
+      <Input v-model="formValidate.longitude" placeholder="请输入写字楼经度"  ></Input>
     </FormItem>
 
-    <FormItem label="位置图片，限6张图片" prop="position_picture">
-      <cbUpload ref="editor5" v-model="formValidate.position_picture" ></cbUpload>
+    <FormItem label="写字楼纬度" prop="latitude">
+      <Input v-model="formValidate.latitude" placeholder="请输入写字楼纬度"  ></Input>
+    </FormItem>
+
+    <FormItem label="项目图片，限6张图片" prop="picture">
+      <cbUpload ref="editor5" v-model="formValidate.picture" ></cbUpload>
     </FormItem>
 
     <FormItem label="出租房源面积信息" prop="rentable_area">
@@ -123,7 +127,7 @@
         <FormItem label="日租金">
           <Input v-model="table_day_rent"></Input>
         </FormItem>
-        <FormItem label="月租金">
+        <FormItem label="备注">
           <Input v-model="table_remark"></Input>
         </FormItem>
       </Form>
@@ -227,6 +231,12 @@ export default {
         ],
         traffic: [
           { required: true, message: '周边交通介绍', trigger: 'blur' }
+        ],
+        longitude: [
+          { required: true, message: '经度不能为空', trigger: 'blur' }
+        ],
+        latitude: [
+          { required: true, message: '纬度不能为空', trigger: 'blur' }
         ]
       }
     }

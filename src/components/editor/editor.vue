@@ -37,9 +37,16 @@ export default {
      */
     cache: {
       type: Boolean,
-      default: true
+      default: false
     }
   },
+
+  watch: {
+    value (val) {
+      if (val) this.editor.txt.html(val)
+    }
+  },
+
   computed: {
     editorId () {
       return `editor${this._uid}`

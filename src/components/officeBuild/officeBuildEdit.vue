@@ -5,13 +5,21 @@
       <Input v-model="formValidate.title" placeholder="请输入写字楼名称"  ></Input>
     </FormItem>
 
+    <FormItem label="写字楼经度" prop="longitude">
+      <Input v-model="formValidate.longitude" placeholder="请输入写字楼经度"  ></Input>
+    </FormItem>
+
+    <FormItem label="写字楼纬度" prop="latitude">
+      <Input v-model="formValidate.latitude" placeholder="请输入写字楼纬度"  ></Input>
+    </FormItem>
+
     <FormItem label="项目图片，限6张图片" prop="picture">
       <cbUpload ref="editor5" v-model="formValidate.picture" ></cbUpload>
     </FormItem>
 
-    <FormItem label="位置图片，限6张图片" prop="position_picture">
-      <cbUpload ref="editor5" v-model="formValidate.position_picture" ></cbUpload>
-    </FormItem>
+<!--    <FormItem label="位置图片，限6张图片" prop="position_picture">-->
+<!--      <cbUpload ref="editor5" v-model="formValidate.position_picture" ></cbUpload>-->
+<!--    </FormItem>-->
 
     <FormItem label="出租房源面积信息" prop="rentable_area">
       <Table border :columns="columns" :data="formValidate.rentable_area">
@@ -96,15 +104,15 @@
     </FormItem>
 
     <FormItem label="项目介绍" prop="introduce">
-      <tinymce-editor ref="editor"  v-model="formValidate.introduce" :cache="false"></tinymce-editor>
+      <tinymce-editor ref="editor"  v-model="formValidate.introduce" ></tinymce-editor>
     </FormItem>
 
     <FormItem label="周边酒店、餐饮、银行介绍" prop="hotel_etc">
-      <tinymce-editor ref="editor2"  v-model="formValidate.hotel_etc" :cache="false" ></tinymce-editor>
+      <tinymce-editor ref="editor2"  v-model="formValidate.hotel_etc" ></tinymce-editor>
     </FormItem>
 
     <FormItem label="周边交通介绍" prop="traffic">
-      <tinymce-editor ref="editor3" v-model="formValidate.traffic" :cache="false"></tinymce-editor>
+      <tinymce-editor ref="editor3" v-model="formValidate.traffic" ></tinymce-editor>
     </FormItem>
 
     <FormItem label="周边入驻企业" prop="company">
@@ -227,6 +235,12 @@ export default {
         ],
         traffic: [
           { required: true, message: '周边交通介绍', trigger: 'blur' }
+        ],
+        longitude: [
+          { required: true, message: '经度不能为空', trigger: 'blur' }
+        ],
+        latitude: [
+          { required: true, message: '纬度不能为空', trigger: 'blur' }
         ]
       }
     }
@@ -295,6 +309,9 @@ export default {
         .then(function (response) {
           let data = response.data
           _this.formValidate = data.data
+          _this.formValidate.traffic = data.data.traffic
+          _this.formValidate.hotel_etc = data.data.hotel_etc
+          _this.formValidate.introduce = data.data.introduce
         // _this.$set(_this.formValidate, 'picture', data.data.picture)
         })
     }
