@@ -171,15 +171,15 @@ export default {
       },
       columns: [
         {
-          title: '面积',
+          title: '面积，单位(㎡)',
           key: 'area'
         },
         {
-          title: '日租金',
+          title: '日租金，单位(元/㎡·天)',
           key: 'day_rent'
         },
         {
-          title: '月租金',
+          title: '备注',
           key: 'remark'
         },
         {
