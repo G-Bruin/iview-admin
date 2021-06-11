@@ -26,7 +26,7 @@
         <div style="text-align:center">
 <!--          <Page :total="100" :page-size="page"  :on-change="jumpPage"/>-->
 
-            <Page :total="total"  :page-size="page"
+            <Page :total="total"  :page-size="per_page"
                   @on-change="changePage" show-total />
           </div>
       </Card>
@@ -141,7 +141,7 @@ export default {
         .then(function (response) {
           let data = response.data.data
           _this.host = response.data.message
-          _this.total = data.last_page
+          _this.total = data.total
           _this.data = data.data
         })
     }
