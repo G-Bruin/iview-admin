@@ -141,7 +141,7 @@ export default {
         .then(function (response) {
           let data = response.data.data
           _this.host = response.data.message
-          _this.total = data.total
+          _this.total = data.last_page
           _this.data = data.data
         })
     }
