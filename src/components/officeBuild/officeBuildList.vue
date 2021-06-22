@@ -128,7 +128,7 @@ export default {
     },
 
     show (row) {
-      window.open(this.host + '/office/building/' + row.id, '_blank', '')
+      window.open(this.host + '/office/building/' + row.id + '.html', '_blank', '')
     },
 
     getList (page) {
